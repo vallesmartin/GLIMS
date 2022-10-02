@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:R12.ViewModels"
+             x:Class="R12.Views.ItemPage"
+             Title="{Binding Title}">
+    
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="{StaticResource Back}">
+            <StackLayout VerticalOptions="StartAndExpand" BackgroundColor="{StaticResource Back}">
+
+                <Label  Text="Artículo"
+                    Margin="10,10,0,0"                  
+                    VerticalOptions="StartAndExpand" 
+                    HorizontalOptions="Start" 
+                    FontSize="20"
+                    TextColor="Black"
+                    LineBreakMode="WordWrap"/>
+
+                <Label  Text="{Binding Item.ItemDescription}"
+                    Margin="20,10,0,0" 
+                    VerticalOptions="StartAndExpand" 
+                    HorizontalOptions="Start" 
+                    FontSize="25"
+                    TextColor="Black"
+                    LineBreakMode="WordWrap"/>
+
+                <Label  Text="Codigo de Barras"
+                    Margin="10,10,0,0"                  
+                    VerticalOptions="StartAndExpand" 
+                    HorizontalOptions="Start" 
+                    FontSize="20"
+                    TextColor="Black"
+                    LineBreakMode="WordWrap"/>
+
+                <Label  Text="{Binding Item.ItemBarcode}"
+                    Margin="20,10,0,0" 
+                    VerticalOptions="StartAndExpand" 
+                    HorizontalOptions="Start" 
+                    FontSize="25"
+                    TextColor="Black"
+                    LineBreakMode="WordWrap"/>
+
+                <Grid HorizontalOptions="StartAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Column="0">
+                        <Label  Margin="10,10,0,0"
+                                Text="Categoría"
+                                TextColor="Black"
+                                FontSize="20"
+                                VerticalOptions="Start" 
+                                HorizontalOptions="Start" />
+
+                        <Image Source="{Binding Category.CategoryImageName}" 
+                               Margin="10,0,0,0" 
+                               HeightRequest="100" 
+                               HorizontalOptions="Center"/>
+
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="2" HorizontalOptions="StartAndExpand">
+
+                        <Label  Margin="10,10,0,0"
+                                Text="Unidades Venta"
+                                TextColor="Black"
+                                FontSize="20"
+                                VerticalOptions="Start" 
+                                HorizontalOptions="Start" />
+
+                        <Label  Text="{Binding Item.ItemSuggStep}"
+                                Margin="20,10,0,0" 
+                                TextColor="Black"
+                                FontSize="45"
+                                VerticalOptions="Start" 
+                                HorizontalOptions="Center" />
+
+                    </StackLayout>
+                </Grid>
+
+                <Label  Text="Stock disponible"
+                    Margin="10,10,0,0"                  
+                    VerticalOptions="StartAndExpand" 
+                    HorizontalOptions="Start" 
+                    FontSize="20"
+                    TextColor="Black"
+                    LineBreakMode="WordWrap"/>
+
+                <Label  Text="Informacion no disponible."
+                    Margin="20,10,0,0" 
+                    VerticalOptions="StartAndExpand" 
+                    HorizontalOptions="Start" 
+                    FontSize="25"
+                    TextColor="Black"
+                    LineBreakMode="WordWrap"/>
+
+                <Grid HorizontalOptions="StartAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Column="0">
+                        <Label  Margin="10,10,0,0"
+                                Text="Costo"
+                                TextColor="Black"
+                                FontSize="20"
+                                VerticalOptions="Start" 
+                                HorizontalOptions="Start" />
+
+                        <Label  Text="{Binding Item.ItemPrice}"
+                                Margin="20,10,0,0" 
+                                TextColor="Black"
+                                FontSize="40"
+                                VerticalOptions="Start" 
+                                HorizontalOptions="Center" />
+
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="2" HorizontalOptions="StartAndExpand">
+
+                        <Label  Margin="10,10,0,0"
+                                Text="Precio venta"
+                                TextColor="Black"
+                                FontSize="20"
+                                VerticalOptions="Start" 
+                                HorizontalOptions="Start" />
+
+                        <Label  Text="{Binding Item.ItemPrice}"
+                                Margin="20,10,0,0" 
+                                TextColor="Black"
+                                FontSize="40"
+                                VerticalOptions="Start" 
+                                HorizontalOptions="Center" />
+
+                    </StackLayout>
+                </Grid>
+                
+                <Label  Text="Proveedor"
+                    Margin="10,10,0,0"                  
+                    VerticalOptions="StartAndExpand" 
+                    HorizontalOptions="Start" 
+                    FontSize="20"
+                    TextColor="Black"
+                    LineBreakMode="WordWrap"/>
+
+                <Label  Text="{Binding Entity.EntityLegalName}"
+                    Margin="20,10,0,0" 
+                    VerticalOptions="StartAndExpand" 
+                    HorizontalOptions="Start" 
+                    FontSize="25"
+                    TextColor="Black"
+                    LineBreakMode="WordWrap"/>
+
+                <Label  Text="Unidades por bulto proveedor"
+                    Margin="10,10,0,0"                  
+                    VerticalOptions="StartAndExpand" 
+                    HorizontalOptions="Start" 
+                    FontSize="20"
+                    TextColor="Black"
+                    LineBreakMode="WordWrap"/>
+
+                <Label  Text="{Binding Item.ItemSuggHigh}"
+                    Margin="20,10,0,0" 
+                    VerticalOptions="StartAndExpand" 
+                    HorizontalOptions="Start" 
+                    FontSize="25"
+                    TextColor="Black"
+                    LineBreakMode="WordWrap"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

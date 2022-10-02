@@ -1,0 +1,50 @@
+table {
+    width: 100%;
+  }
+
+  .example-section {
+    margin: 12px 0;
+  }
+  
+  .example-margin {
+    margin: 0 12px;
+  }
+
+  .example-card {
+    display: block;
+  }
+  mat-card {
+    margin: 10px;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin-top: 4px;
+  }
+
+  .row-checked {
+    background-color: #fff4ce;
+  }
+
+  .row-checked-dark {
+    background-color: #9f8116;
+  }
+
+  .example-container {
+    width: 50px
+  }
+
+  ::ng-deep .mat-column-w div.mat-form-field-infix,
+  ::ng-deep .mat-column-x div.mat-form-field-infix,
+  ::ng-deep .mat-column-y div.mat-form-field-infix,
+  ::ng-deep .mat-column-Cantidad div.mat-form-field-infix { width: 17% !important; }
+
+  .progress-hidden {
+    display:none;
+  }
+
+  .example-form {
+    display: inline-block;
+    padding-right: 10px;
+  }
+

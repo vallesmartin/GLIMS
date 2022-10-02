@@ -1,0 +1,92 @@
+<mat-progress-bar [class]="cssProgress" color="primary" mode="indeterminate"></mat-progress-bar>
+
+    <mat-card class="example-card">
+
+        <div class="example-form">
+
+            <mat-card-subtitle>Codigo de cliente #</mat-card-subtitle>
+            <mat-card-title>{{entityId}}</mat-card-title>
+        
+            <mat-card-subtitle>Nombre legal</mat-card-subtitle>
+            <mat-card-title>{{entityLegalName}}</mat-card-title>
+            <mat-card-subtitle>Contacto</mat-card-subtitle>
+            <mat-card-title>{{entityContact}}</mat-card-title>
+            <mat-card-subtitle>Direccion</mat-card-subtitle>
+            <mat-card-title>{{entityAddress}}</mat-card-title>
+            <mat-card-subtitle>Descripcion</mat-card-subtitle>
+            <mat-card-title>{{entityDescription}}</mat-card-title>
+            <mat-card-subtitle>Telefono</mat-card-subtitle>
+            <mat-card-title>{{entityPhone}}</mat-card-title>
+            <mat-card-subtitle>E-mail</mat-card-subtitle>
+            <mat-card-title>{{entityMail}}</mat-card-title>
+            <mat-card-subtitle>Codigo interno</mat-card-subtitle>
+            <mat-card-title>{{entityInternalCode}}</mat-card-title>
+
+        </div>
+        
+        <mat-divider inset></mat-divider>
+
+        <mat-card-actions>
+            <button mat-button mat-raised-button color="primary" ></button>
+        </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="example-card">
+
+        <mat-card-subtitle>Modificaciones</mat-card-subtitle>
+        <mat-card-content>
+            <form class="example-form">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Nombre Legal</mat-label>
+                    <input matInput [formControl]="newEntityLegalName" >
+                </mat-form-field>
+            </form>
+            <form class="example-form">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Nombre contacto</mat-label>
+                    <input matInput [formControl]="newEntityContact" >
+                </mat-form-field>
+            </form>
+            <form class="example-form">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Direccion</mat-label>
+                    <input matInput [formControl]="newEntityAddress" >
+                </mat-form-field>
+            </form>
+            <form class="example-form">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Descripcion</mat-label>
+                    <input matInput [formControl]="newEntityDescription" >
+                </mat-form-field>
+            </form>
+            <form class="example-form">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Telefono</mat-label>
+                    <input matInput [formControl]="newEntityPhone" >
+                </mat-form-field>
+            </form>
+            <form class="example-form">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>E-mail</mat-label>
+                    <input matInput [formControl]="newEntityMail" >
+                </mat-form-field>
+            </form>
+            <form class="example-form">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Codigo interno</mat-label>
+                    <input matInput [formControl]="newEntityInternalCode" >
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+
+        <mat-divider inset></mat-divider>
+
+        <mat-progress-bar [class]="cssProgress" color="primary" mode="indeterminate"></mat-progress-bar>
+        <mat-card-actions>
+            <button mat-button mat-raised-button color="primary" (click)="saveChanges()">GUARDAR MODIFICACIONES</button>
+        </mat-card-actions>
+        <mat-card-footer>
+            <mat-divider inset></mat-divider>
+        </mat-card-footer>
+
+    </mat-card>

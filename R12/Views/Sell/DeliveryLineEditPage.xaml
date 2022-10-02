@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="R12.Views.DeliveryLineEditPage"
+             xmlns:vm="clr-namespace:R12.ViewModels"
+             BackgroundColor="#50000000">
+
+    <ContentPage.Content>
+
+        <StackLayout VerticalOptions="FillAndExpand">
+
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+            </StackLayout.GestureRecognizers>
+
+            <StackLayout VerticalOptions="CenterAndExpand" BackgroundColor="Transparent">
+
+                <!--Frame PopUp-->
+                <Frame BackgroundColor="{StaticResource BackPrimary}" Margin="25" HeightRequest="250" CornerRadius="5">
+                    <StackLayout>
+                        <StackLayout VerticalOptions="Start" BackgroundColor="{StaticResource Back}" HeightRequest="45">
+
+                            <Label  Text="{Binding Line.DocumentLineItemDescription}"
+                                    Margin="0"
+                                    HorizontalOptions="CenterAndExpand"
+                                    FontSize="18"
+                                    TextColor="{StaticResource TextPrimary}"
+                                    LineBreakMode="WordWrap"/>
+                        </StackLayout>
+                        <StackLayout VerticalOptions="EndAndExpand" Orientation="Vertical">
+                            <Frame HasShadow="True" Padding="0" HeightRequest="500" BackgroundColor="{StaticResource BackPrimary}">
+                                <StackLayout VerticalOptions="End">
+                                    <!--<Label  Margin="10,0,0,0"
+                                                    Text="Agregar unidades"
+                                                    TextColor="Black"
+                                                    FontSize="20"
+                                                    VerticalOptions="Start" 
+                                                    HorizontalOptions="Start" />-->
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="100"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Entry  Grid.Column="0" Text="{Binding ManualQty, Mode=OneWayToSource}"
+                                                Placeholder="Unidades"
+                                                PlaceholderColor="Gray"
+                                                FontSize="30"
+                                                TextColor="{StaticResource TextPrimary}"
+                                                Keyboard="Numeric"/>
+                                        <Button Grid.Column="1" Text="Modificar" Command="{Binding ManualSaveLineCommand}"/>
+                                    </Grid>
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame HasShadow="True" Padding="0" HeightRequest="500" BackgroundColor="{StaticResource BackPrimary}">
+                                <StackLayout VerticalOptions="End">
+                                    <!--<Label  Margin="10,0,0,0"
+                                                    Text="Agregar bultos"
+                                                    TextColor="Black"
+                                                    FontSize="20"
+                                                    VerticalOptions="Start" 
+                                                    HorizontalOptions="Start" />-->
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="100"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Entry  Grid.Column="0" Text="{Binding PacksQty, Mode=OneWayToSource}"
+                                                        HorizontalOptions="StartAndExpand"
+                                                        Placeholder="Bultos"
+                                                        PlaceholderColor="Gray"
+                                                        FontSize="30"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        Keyboard="Numeric"/>
+
+                                        <Label  Margin="0,10,0,0"
+                                                        Grid.Column="1"
+                                                        Text="{Binding Packs}"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        FontSize="30"
+                                                        VerticalOptions="Start" 
+                                                        HorizontalOptions="Center" />
+
+                                        <Button Grid.Column="2" Text="Modificar" Command="{Binding PacksSaveLineCommand}"/>
+                                    </Grid>
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame HasShadow="True" Padding="0" HeightRequest="200" BackgroundColor="{StaticResource BackPrimary}">
+                                <StackLayout VerticalOptions="End">
+                                   
+                                    <Button Text="Eliminar" TextColor="Red" Command="{Binding DeleteCommand}"/>
+                                </StackLayout>
+                            </Frame>
+
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

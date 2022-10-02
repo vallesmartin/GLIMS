@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:R12.ViewModels"
+             x:Class="R12.Views.Deliveries.DeliveryPage">
+    
+    <ContentPage.BindingContext>
+        <vm:FVSCartViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancelar" />
+        <ToolbarItem Text="Finalizar" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <!--Suggest de Cliente-->
+            <Label Text="{Binding EntityLegalName}"/>
+
+            <CollectionView x:Name="ItemCollectionView" 
+                            ItemsSource="{Binding DocumentLines}">
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" 
+                                     Span="1" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Grid Padding="1">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="67" />
+                            </Grid.RowDefinitions>
+
+                            <Frame VerticalOptions="Start" Padding="10">
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer/>
+                                </Frame.GestureRecognizers>
+
+                                <Grid>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="55"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1"/>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="40"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--<Image Grid.RowSpan="2"
+                                               Source="{Binding CategoryImageName}"
+                                               Aspect="AspectFill"
+                                               HeightRequest="40"
+                                               WidthRequest="40" /> -->
+                                    <Label  Grid.Column="0" 
+                                            Text="{Binding DocumentLineItemId}"
+                                            IsVisible="false" />
+                                    <Label  Grid.Column="2" 
+                                            Text="{Binding DocumentLineQty}"
+                                            Padding="-5"
+                                            HorizontalOptions="StartAndExpand"
+                                            FontSize="23"
+                                            TextColor="Black"
+                                            LineBreakMode="WordWrap" />
+                                    <Label  Grid.Column="3" 
+                                            Text="{Binding DocumentLineItemDescription}"
+                                            Padding="-5"
+                                            HorizontalOptions="StartAndExpand"
+                                            FontSize="23"
+                                            TextColor="Black"
+                                            LineBreakMode="WordWrap" />
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

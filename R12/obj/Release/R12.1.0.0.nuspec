@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>R12</id>
+    <version>1.0.0</version>
+    <authors>R12</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Api" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.1" exclude="Build,Analyzers" />
+        <dependency id="Xam.Plugin.Connectivity" version="3.2.0" exclude="Build,Analyzers" />
+        <dependency id="Xamarin.Essentials" version="1.7.0" exclude="Build,Analyzers" />
+        <dependency id="Xamarin.Forms" version="5.0.0.2083" exclude="Build,Analyzers" />
+        <dependency id="ZXing.Net.MobileX.Forms" version="3.0.1" exclude="Build,Analyzers" />
+        <dependency id="dotMorten.Xamarin.Forms.AutoSuggestBox" version="1.1.1" exclude="Build,Analyzers" />
+        <dependency id="sqlite-net-pcl" version="1.7.335" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\Martin\Source\Repos\vallesmartin\AndromedaR12\R12\R12\bin\Release\netstandard2.0\R12.dll" target="lib\netstandard2.0\R12.dll" />
+  </files>
+</package>

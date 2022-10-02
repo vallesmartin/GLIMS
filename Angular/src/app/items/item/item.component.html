@@ -1,0 +1,97 @@
+<mat-progress-bar [class]="cssProgress" color="primary" mode="indeterminate"></mat-progress-bar>
+<mat-card class="example-card">
+
+    <div class="example-form">
+
+        <mat-card-subtitle>Codigo interno</mat-card-subtitle>
+        <mat-card-title>{{itemInternalCode}}</mat-card-title>
+
+        <mat-card-subtitle>Descripcion</mat-card-subtitle>
+        <mat-card-title>{{itemDescription}}</mat-card-title>
+
+        <mat-card-subtitle>Codigo de barras</mat-card-subtitle>
+        <mat-card-title>{{itemBarcode}}</mat-card-title>
+
+        <mat-card-subtitle>Proveedor</mat-card-subtitle>
+        <mat-card-title>{{entityLegalName}}</mat-card-title>
+
+        <mat-card-subtitle>Costo por unidad</mat-card-subtitle>
+        <mat-card-title>{{itemCost | currency}}</mat-card-title>
+
+        <mat-card-subtitle>Precio por unidad</mat-card-subtitle>
+        <mat-card-title>{{itemPrice | currency}}</mat-card-title>
+
+        <mat-card-subtitle>Bultos por defecto</mat-card-subtitle>
+        <mat-card-title>{{itemSugg}}</mat-card-title>
+    
+        <mat-card-subtitle>Bultos por defecto</mat-card-subtitle>
+        <mat-card-title>{{itemSugg}}</mat-card-title>
+
+    </div>
+    
+    <mat-divider inset></mat-divider>
+
+    <mat-card-actions>
+        <button mat-button mat-raised-button color="primary" ></button>
+    </mat-card-actions>
+</mat-card>
+
+<mat-card class="example-card">
+
+    <mat-card-subtitle>Modificaciones</mat-card-subtitle>
+    <mat-card-content>
+        <form class="example-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Codigo interno</mat-label>
+                <input matInput [formControl]="newInternalCode" >
+            </mat-form-field>
+        </form>
+        <form class="example-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Descripcion</mat-label>
+                <input matInput [formControl]="newDescription" >
+            </mat-form-field>
+        </form>
+        <form class="example-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Codigo de barras</mat-label>
+                <input matInput [formControl]="newBarcode" >
+            </mat-form-field>
+        </form>
+        <form class="example-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Costo por unidad</mat-label>
+                <input matInput [formControl]="newCost" >
+            </mat-form-field>
+        </form>
+        <form class="example-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Precio por unidad</mat-label>
+                <input matInput [formControl]="newPrice" >
+            </mat-form-field>
+        </form>
+        <form class="example-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Bultos sugeridos</mat-label>
+                <input matInput [formControl]="newSuggested" >
+            </mat-form-field>
+        </form>
+        <form class="example-form">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Bultos Proveedor</mat-label>
+                <input matInput [formControl]="newSupplierPack" >
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+
+    <mat-divider inset></mat-divider>
+
+    <mat-progress-bar [class]="cssProgress" color="primary" mode="indeterminate"></mat-progress-bar>
+    <mat-card-actions>
+        <button mat-button mat-raised-button color="primary" (click)="saveChanges()">GUARDAR MODIFICACIONES</button>
+    </mat-card-actions>
+    <mat-card-footer>
+        <mat-divider inset></mat-divider>
+    </mat-card-footer>
+
+</mat-card>

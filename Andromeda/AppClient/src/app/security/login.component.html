@@ -1,0 +1,24 @@
+<mat-progress-bar [class]="cssProgress" color="primary" mode="indeterminate"></mat-progress-bar>
+<mat-card>
+    <mat-card-title>{{title}}</mat-card-title>
+    <mat-card-content>
+        <mat-form-field appearance="legacy">
+            <div class="example-container">
+                <mat-form-field appearance="fill">
+                  <mat-label>Ingrese nombre de usuario</mat-label>
+                  <input matInput placeholder="Usuario" [formControl]="username" required>
+                  <mat-error *ngIf="username.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+              </div>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Ingrese contraseña</mat-label>
+            <input matInput [formControl]="password" [type]="hide ? 'password' : 'text'">
+            <mat-error *ngIf="password.invalid">{{getErrorPassMessage()}}</mat-error>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="login()">Ingresar</button>
+    </mat-card-content>
+</mat-card>

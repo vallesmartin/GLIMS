@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="2" android:versionName="2.5" package="com.andromeda.r12" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="24" android:targetSdkVersion="24" />
+	<application android:label="R12.Android" android:theme="@style/Theme.Splash" android:icon="@mipmap/icon"></application>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.CAMERA" />
+	<uses-permission android:name="android.permission.FLASHLIGHT" />
+</manifest>

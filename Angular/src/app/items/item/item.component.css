@@ -1,0 +1,19 @@
+.example-form {
+  display: inline-block;
+  padding-right: 10px;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.example-card {
+  display: block;
+}
+mat-card {
+  margin: 10px;
+}
+
+.progress-hidden {
+  display:none;
+}

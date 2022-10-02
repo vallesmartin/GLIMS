@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:R12.ViewModels"
+             x:Class="R12.Views.LoggingPage"
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:LoggingViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="Trash.png" Text="Search" Command="{Binding DeleteCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid VerticalOptions="Start" HorizontalOptions="Fill" BackgroundColor="{StaticResource Secondary}">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Image Source="info.png" VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand" HeightRequest="80" WidthRequest="80" Margin="18"/>
+                <Label  Grid.Row="0" 
+                        Grid.Column="1" 
+                        Text="Aquí hay información útil para mejorar la experiencia en la aplicación. Por favor, si ud. experimentó inconvenientes, puede informarnos buscando el registro con la hora aproximada al suceso y obtener un numero de incidente."
+                        Padding="1"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        FontSize="13"
+                        TextColor="{StaticResource Primary}"
+                        LineBreakMode="WordWrap" 
+                        Margin="5"/>
+
+                <Label IsVisible="false" Text="{Binding LogMessageId}"/>
+            </Grid>
+            <StackLayout HorizontalOptions="Fill" Orientation="Horizontal" BackgroundColor="{StaticResource Secondary}" MinimumHeightRequest="100">
+                
+                
+            </StackLayout>
+            <CollectionView x:Name="ItemCollectionView" 
+                            ItemsSource="{Binding Logs}">
+
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" 
+                                     Span="1" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Grid Padding="1">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Frame VerticalOptions="Start">
+
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                            </Frame.GestureRecognizers>
+
+                            <StackLayout>
+                            <Grid>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="159"/>
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Row="0" 
+                                        IsVisible="false" 
+                                        Text="{Binding LogMessageId}"/>
+                                <Label  Grid.Row="0" 
+                                        Grid.Column="0" 
+                                        Text="{Binding LogAt}"
+                                        Padding="1"
+                                        HorizontalOptions="Start"
+                                        FontSize="12"
+                                        TextColor="Black"
+                                        LineBreakMode="WordWrap" />
+                                <Label  Grid.Row="0" 
+                                        Grid.Column="1" 
+                                        Text="{Binding LogCode}"
+                                        Padding="1"
+                                        HorizontalOptions="StartAndExpand"
+                                        FontSize="12"
+                                        TextColor="Black"
+                                        LineBreakMode="WordWrap" />
+                                
+                            </Grid>
+                                    <Label  Grid.Row="1" 
+                                        Text="{Binding LogDescription}"
+                                        Padding="1"
+                                        HorizontalOptions="StartAndExpand"
+                                        FontSize="10"
+                                        TextColor="Black"
+                                        LineBreakMode="WordWrap" />
+
+                                    <StackLayout Orientation="Horizontal" WidthRequest="500">
+                                        <StackLayout HorizontalOptions="Start">
+                                            <Label  IsVisible="true" 
+                                                    Text="Presione para enviar error"
+                                                    TextDecorations="Underline"
+                                                    TextColor="{StaticResource TextWarning}"/>
+                                        </StackLayout>
+                                        <StackLayout HorizontalOptions="CenterAndExpand">
+                                        </StackLayout>
+                                        <StackLayout HorizontalOptions="End">
+                                            <Label  IsVisible="true" 
+                                                    Text= "{Binding LogId}"
+                                                    TextColor="{StaticResource TextWarning}"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

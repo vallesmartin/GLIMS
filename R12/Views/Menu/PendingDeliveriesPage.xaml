@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="R12.Views.Menu.PendingDeliveriesPage"
+             xmlns:vm="clr-namespace:R12.ViewModels"
+             Shell.NavBarIsVisible="True"
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:PendingDeliveriesViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="{Binding TrashLogo}" Text="Search" Command="{Binding DeleteDeliveriesCommand}" />
+        <!--<ToolbarItem Icon="{Binding SendLogo}" Text="Search" Command="{Binding SendDeliveryCommand}" />-->
+        
+        <!--<ToolbarItem Icon="{Binding RecycleLogo}" Text="Search" Command="{Binding RecycleCommand}" />-->
+        <!--<ToolbarItem Icon="{Binding NotificationLogo}" Text="Search" Command="{Binding NotificationsCommand}"/>-->
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <!--Conectividad-->
+            <Frame x:Name="FrameConnection" HasShadow="True" HorizontalOptions="FillAndExpand" IsVisible="false" BackgroundColor="{StaticResource BackPrimary}">
+                <StackLayout>
+                    <!--No Conectado-->
+                    <StackLayout x:Name="StackLayoutNotConnection" Orientation="Vertical">
+                        <Image Source="nubeconexion.png" WidthRequest="70"/>
+                        <Label  HorizontalOptions="Center"
+                            Grid.Column="0"
+                            Text="Sin conexión a Internet"
+                            FontAttributes="None"
+                            FontSize="20"
+                            TextColor="{StaticResource TextPrimary}"/>
+                        <Button Text="Comprobar conexión" Style="{StaticResource ButtonWarnSmall}" Command="{Binding RefreshPageCommand}"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            
+            <!--Sin pedidos para enviar-->
+            <Frame x:Name="FrameNotPending" HasShadow="True" HorizontalOptions="FillAndExpand" IsVisible="{Binding IsPending}" BackgroundColor="{StaticResource Secondary}">
+                <StackLayout>
+                    <!--Mensaje pedidos para enviar-->
+                    <StackLayout  Orientation="Vertical">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                            <Label  HorizontalOptions="Center"
+                                    Grid.Column="0"
+                                    Text="{Binding CountPendingDeliveries}"
+                                    FontAttributes="None"
+                                    FontSize="18"
+                                    TextColor="{StaticResource TextSecondary}"/>
+                            <Label  HorizontalOptions="Center"
+                                    Grid.Column="0"
+                                    Text="pedido/s"
+                                    FontAttributes="None"
+                                    FontSize="20"
+                                    TextColor="{StaticResource TextSecondary}"/>
+                        </StackLayout>
+                        
+                        <Label  HorizontalOptions="Center"
+                            Grid.Column="0"
+                            Text="esperando para ser enviado/s"
+                            FontAttributes="None"
+                            FontSize="18"
+                            TextColor="{StaticResource TextSecondary}"/>
+                        <Button Text="Enviar pendientes" Style="{StaticResource ButtonWarnSmall}" Command="{Binding SendDeliveryCommand}"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            
+            <Frame VerticalOptions="Start" BackgroundColor="{StaticResource Back}" Padding="8,0,8,0">
+
+                <!--Documentos internos-->
+                <CollectionView x:Name="ItemCollectionView" 
+                            VerticalScrollBarVisibility="Always"
+                            ItemsSource="{Binding Deliveries}">
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+
+                            <Grid x:Name="GridDocs" Padding="0,0,0,8">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition  Width="0"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!--Documento-->
+                                <Frame HeightRequest="100">
+
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                    </Frame.GestureRecognizers>
+
+                                    <StackLayout Orientation="Vertical">
+                                        <Label IsVisible="false"  Text="{Binding _DocumentId}"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Image Grid.Column="0" Grid.Row="0" Source="doc.png" HeightRequest="25"/>
+                                            <Label IsVisible="false" Text="{Binding EntityId}"/>
+                                            <Label  Grid.Row="0" 
+                                                        Grid.Column="1"
+                                                        Text="{Binding _EntityDescription}"
+                                                        HorizontalOptions="StartAndExpand"
+                                                        FontSize="20"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        LineBreakMode="WordWrap" />
+                                        </StackLayout>
+                                        <StackLayout Orientation="Vertical">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label FontSize="16"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        Text="Fecha: "
+                                                        FontAttributes="Bold"/>
+                                                <Label FontSize="16"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        Text="{Binding _DocumentDate, StringFormat='{0:dd/MM}'}"/>
+                                                <Label FontSize="16"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        Text="Hora: "
+                                                        FontAttributes="Bold"/>
+                                                <Label FontSize="16"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        Text="{Binding _DocumentDate, StringFormat='{0:hh:mm}'}"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label FontSize="16"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        Text="Cantidad de Articulos: "
+                                                        FontAttributes="Bold"/>
+                                                <Label FontSize="16"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        Text="{Binding _DocumentLinesQty}"/>
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label FontSize="16"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        Text="Estado: "
+                                                        FontAttributes="Bold"/>
+                                                <Label FontSize="16"
+                                                        Text="{Binding _DocumentStatusText}"
+                                                        TextColor="{Binding _color}"/>
+                                                <Label FontSize="16" IsVisible="{Binding _numberVisible}"
+                                                        Text="{Binding _DocumentNumber,StringFormat='{}#{0} en Andromeda'}"
+                                                        TextColor="{StaticResource Success}"
+                                                        FontAttributes="Bold"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

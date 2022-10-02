@@ -1,0 +1,23 @@
+<mat-progress-bar [class]="cssProgress" color="primary" mode="indeterminate"></mat-progress-bar>
+
+<mat-card class="example-card">
+  
+    <mat-card-subtitle>Nro de pedido #</mat-card-subtitle>
+    <mat-card-title>{{deliveryNumber}}</mat-card-title>
+    <mat-card-subtitle>Cliente</mat-card-subtitle>
+    <mat-card-title>{{entityName}}</mat-card-title>
+
+    <mat-card-content>
+        <h2 class="example-h2"></h2>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Importe total</mat-label>
+            <input matInput placeholder="$$$" [formControl]="totalAmount" required>
+        </mat-form-field>
+    </mat-card-content>
+    <mat-divider inset></mat-divider>
+
+    <mat-card-actions>
+        
+        <button mat-raised-button color="primary" (click)="openDialog()">FINALIZAR COBRANZA</button>
+    </mat-card-actions>
+</mat-card>

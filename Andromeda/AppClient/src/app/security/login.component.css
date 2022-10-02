@@ -1,0 +1,29 @@
+mat-card {
+    max-width: 400px;
+    margin: 2em auto;
+    text-align: center;
+}
+  
+mat-form-field {
+    display: block;
+}
+
+.example-container .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+
+  .hidden {
+      display: none;
+  }
+
+.mat-form-field {
+    margin-right: 8px;
+}
+
+.progress{
+
+}
+
+.progress-hidden {
+  display:none;
+}

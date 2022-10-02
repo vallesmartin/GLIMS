@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:R12.ViewModels"   
+             xmlns:dm="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
+             x:Class="R12.Views.FastVisualSellPage"
+             Title="{Binding Title}"
+             BackgroundColor="{StaticResource Back}">
+
+<ContentPage.BindingContext>
+    <vm:FastVisualSellViewModel />
+</ContentPage.BindingContext>
+
+<ContentPage.ToolbarItems>
+    <ToolbarItem Icon="{Binding CartIcon}" Command="{Binding CartCommand}"/>
+    <ToolbarItem Text="{Binding ItemsCount}" Command="{Binding CartCommand}"/>
+</ContentPage.ToolbarItems>
+
+<ContentPage.Content>
+        <StackLayout>
+            <!--Suggest de Articulo-->
+            <Entry x:Name="DummyEntry" IsVisible="False" Keyboard="Numeric" />
+            <dm:AutoSuggestBox  x:Name="ItemBox" 
+                            PlaceholderText=" Búsqueda por Artículo ..." 
+                            PlaceholderTextColor="{StaticResource TextPrimary}"
+                            DisplayMemberPath="ItemInternalDescription" 
+                            TextMemberPath="ItemDescription"
+                            TextChanged="ItemBox_TextChanged"
+                            QuerySubmitted="ItemBox_QuerySubmitted"
+                            SuggestionChosen="ItemBox_SuggestionChosen"
+                            HorizontalOptions="StartAndExpand"
+                            WidthRequest="500"
+                            HeightRequest="60"
+                            BackgroundColor="{StaticResource Soft}"
+                            TextColor="{StaticResource TextPrimary}"/>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <ScrollView Grid.Row="0">
+                    <StackLayout>
+                        <!--Vista de coleccion categorias-->
+                        <CollectionView x:Name="ItemCollectionView"
+                                        VerticalOptions="Start"
+                                        ItemsSource="{Binding Categories}" SelectedItem="{Binding FrameTappedCommand}"
+                                        BackgroundColor="{StaticResource Back}"
+                                        InputTransparent="True">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical" Span="3" />
+                            </CollectionView.ItemsLayout>
+
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="4">
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Frame Padding="3">
+
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                            </Frame.GestureRecognizers>
+
+                                            <Grid>
+
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="120" />
+                                                    <RowDefinition Height="1" />
+                                                </Grid.RowDefinitions>
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Image Grid.RowSpan="1"
+                                                        Source="{Binding CategoryImageName}"
+                                                        Aspect="AspectFit"
+                                                        Margin="0,30,0,0"
+                                                        HeightRequest="40"
+                                                        WidthRequest="40" />
+                                                <Label Grid.RowSpan="2"
+                                                        Text="{Binding CategoryDescription}"
+                                                        Padding="10,0,0,0"
+                                                        FontAttributes="None"
+                                                        FontSize="15"
+                                                        TextColor="Black"
+                                                        LineBreakMode="WordWrap" />
+                                                <Label Grid.Row="1"
+                                                        Text="{Binding CategoryId}"
+                                                        LineBreakMode="TailTruncation"
+                                                        FontAttributes="Italic"
+                                                        VerticalOptions="End" />
+                                            </Grid>
+                                        </Frame>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </ScrollView>
+
+                <ImageButton x:Name="btnFocus" Source="keypad.png" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="End" WidthRequest="70" HeightRequest="70" Margin="0,0,20,22" VerticalOptions="End" Released="Button_Clicked"/>
+            </Grid>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

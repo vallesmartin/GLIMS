@@ -1,0 +1,72 @@
+<mat-progress-bar [class]="cssProgress" color="primary" mode="indeterminate"></mat-progress-bar>
+
+<div class="div-dashboard" *ngIf="role.UserRoleIsAdmin || role.UserRoleIsPicker">
+  <mat-card class="example-card">
+      
+    <mat-card-subtitle>Tablero de Pedidos</mat-card-subtitle>
+
+    <mat-card-content>
+
+        <mat-grid-list (window:resize)="onResize($event)" cols="4" rowHeight="100px">
+            <mat-grid-tile
+                *ngFor="let tile of tiles"
+                [colspan]="tile.cols"
+                [rowspan]="tile.rows">
+                <a class="mat-link" routerLink="{{tile.link}}">
+                <span style="font-size: 30px" *ngIf="!isSmallScreen"><mat-icon class="large-icon" >{{tile.icon}} </mat-icon>   {{tile.counter}}</span>
+                <mat-icon class="small-icon" *ngIf="isSmallScreen && tile.counter > 0" matBadge="{{tile.counter}}" matBadgeColor="warn">{{tile.icon}}</mat-icon>
+                <mat-icon class="small-icon" *ngIf="isSmallScreen && tile.counter == 0">{{tile.icon}}</mat-icon>
+                <p *ngIf="!isSmallScreen">{{tile.text}}</p>
+                </a>
+            </mat-grid-tile>
+        </mat-grid-list>
+        
+    </mat-card-content>
+      
+  </mat-card>
+</div>
+
+<div class="div-dashboard" *ngIf="hasActivity">
+
+  <mat-card class="example-card">
+      
+    <mat-card-subtitle>Ultimas actividades de Pedidos</mat-card-subtitle>
+
+      <mat-card-content>
+        <table mat-table [dataSource]="activity | slice:0:10" class="mat-elevation-z8">
+
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+                
+          <ng-container matColumnDef="number">
+            <th mat-header-cell *matHeaderCellDef> Nro. </th>
+            <td mat-cell *matCellDef="let element"> {{element.DocumentNumber}} </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef> </th>
+              <td mat-cell *matCellDef="let element"> {{element.EntityData.EntityContact}} </td>
+            </ng-container>
+
+          <ng-container matColumnDef="client">
+            <th mat-header-cell *matHeaderCellDef> Cliente </th>
+            <td mat-cell *matCellDef="let element"> {{element.EntityData.EntityLegalName}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Actualizado </th>
+            <td mat-cell *matCellDef="let element"> {{element.DocumentLastUpdateAt | date:'dd/MM/yy, HH:mm'}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef> Estado </th>
+              <td mat-cell *matCellDef="let element"> {{element._documentStatus_}} </td>
+            </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="activityColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: activityColumns;"></tr>
+        </table>
+      </mat-card-content>
+      
+  </mat-card>
+</div>

@@ -1,0 +1,59 @@
+<mat-toolbar color="primary">
+  <button *ngIf="isUserValid()" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>menu</mat-icon><span> ANDROMEDA</span>
+  </button>
+  <mat-menu #menu="matMenu" >
+    <button mat-menu-item routerLink="dashboard">
+      <mat-icon>dashboard</mat-icon>
+      <span>Dashboard</span>
+    </button>
+    <button mat-menu-item *ngIf="role.UserRoleIsAdmin || role.UserRoleIsPicker" routerLink="documents">
+      <mat-icon>plagiarism</mat-icon>
+      <span>Busqueda de Pedidos</span>
+    </button>
+    <button mat-menu-item *ngIf="role.UserRoleIsAdmin || role.UserRoleIsSeller" routerLink="entities">
+      <mat-icon>folder_shared</mat-icon>
+      <span>Socios de negocio</span>
+    </button>
+    <button mat-menu-item *ngIf="role.UserRoleIsAdmin" routerLink="items">
+      <mat-icon>inventory_2</mat-icon>
+      <span>Articulos</span>
+    </button>
+  </mat-menu>
+  
+  <span class="example-spacer"></span>
+  <button *ngIf="isUserValid()" mat-icon-button [matMenuTriggerFor]="menu2" aria-label="Example icon-button with a menu">
+    <mat-icon>person</mat-icon>
+  </button>
+  <mat-menu #menu2="matMenu">
+    <button mat-menu-item routerLink="logindata">
+      <mat-icon>vpn_key</mat-icon>
+      <span>Cambiar contraseña</span>
+    </button>
+    <!--<button mat-menu-item routerLink="users">
+      <mat-icon>group</mat-icon>
+      <span>Usuarios</span>
+    </button>-->
+    <button mat-menu-item (click)="toggleThemeMode()">
+      <mat-icon>palette</mat-icon>
+      <span>Modo oscuro/claro</span>
+    </button>
+    <!--<button mat-menu-item routerLink="test-page">
+      <mat-icon>palette</mat-icon>
+      <span>Testing</span>
+    </button>-->
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Cerrar sesion</span>
+    </button>
+    <a href="https://drive.google.com/drive/folders/1rsuLjQRc5f1Keq6scBj4XFvxjGSK6WZr?usp=sharing">
+      <button mat-menu-item>
+        <span>Acerca de la version 2.5</span>
+      </button>
+    </a>
+  </mat-menu>
+  <span class="toolbar-user" *ngIf="isUserValid()" [matMenuTriggerFor]="menu2">{{userName | uppercase}}</span>
+</mat-toolbar>
+<div class="container body-content">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,54 @@
+<mat-toolbar color="primary">
+  <button *ngIf="isUserValid()" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>menu</mat-icon><span> {{title}}</span>
+  </button>
+  <mat-menu #menu="matMenu" >
+    <button mat-menu-item routerLink="dashboard">
+      <mat-icon>dashboard</mat-icon>
+      <span>Dashboard</span>
+    </button>
+    <button mat-menu-item *ngIf="role.UserRoleIsAdmin || role.UserRoleIsPicker" routerLink="deliveries">
+      <mat-icon>shopping_cart</mat-icon>
+      <span>Preparación de Pedidos</span>
+    </button>
+    <button mat-menu-item *ngIf="role.UserRoleIsAdmin || role.UserRoleIsBiller" routerLink="billing">
+      <mat-icon>receipt</mat-icon>
+      <span>Pedidos Preparados</span>
+    </button>
+    <button mat-menu-item *ngIf="role.UserRoleIsAdmin || role.UserRoleIsSeller" routerLink="entities">
+      <mat-icon>money</mat-icon>
+      <span>Entidades</span>
+    </button>
+    <button mat-menu-item *ngIf="role.UserRoleIsAdmin" routerLink="items">
+      <mat-icon>enhanced_encryption</mat-icon>
+      <span>Articulos</span>
+    </button>
+  </mat-menu>
+  
+  <span class="example-spacer"></span>
+  <button *ngIf="isUserValid()" mat-icon-button [matMenuTriggerFor]="menu2" aria-label="Example icon-button with a menu">
+    <mat-icon>person</mat-icon>
+  </button>
+  <mat-menu #menu2="matMenu">
+    <button mat-menu-item routerLink="logindata">
+      <mat-icon>vpn_key</mat-icon>
+      <span>Cambiar contraseña</span>
+    </button>
+    <button mat-menu-item routerLink="users">
+      <mat-icon>group</mat-icon>
+      <span>Usuarios</span>
+    </button>
+    <button mat-menu-item (click)="onSetTheme('purple-green')">
+      <mat-icon>palette</mat-icon>
+      <span>Cambiar tema</span>
+    </button>
+    <button mat-menu-item (click)="logout()" routerLink="login">
+      <mat-icon>logout</mat-icon>
+      <span>Cerrar sesion</span>
+    </button>
+  </mat-menu>
+  <span class="toolbar-user" *ngIf="isUserValid()">{{userName}}</span>
+</mat-toolbar>
+<div class="container body-content">
+  <router-outlet></router-outlet>
+</div>

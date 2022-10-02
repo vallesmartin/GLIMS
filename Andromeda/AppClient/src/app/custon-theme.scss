@@ -1,0 +1,15 @@
+@import "~@angular/material/theming";
+
+@include mat-core();
+
+$odoo-app-light-primary: mat-palette($mat-orange, 600);
+
+$odoo-app-light-theme: mat-light-theme($odoo-app-light-primary);
+
+@include angular-material-theme($odoo-app-light-theme);
+
+.light-theme {
+    @include angular-material-theme($odoo-app-light-theme);
+    background: #fff;
+    color: #222;
+}

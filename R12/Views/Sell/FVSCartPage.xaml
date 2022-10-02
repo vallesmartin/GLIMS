@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="R12.Views.FVSCartPage"
+             xmlns:dm="clr-namespace:dotMorten.Xamarin.Forms;assembly=dotMorten.Xamarin.Forms.AutoSuggestBox"
+             xmlns:vm="clr-namespace:R12.ViewModels"
+             Shell.NavBarIsVisible="True"
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:FVSCartViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Cancelar" Clicked="OnToolbarCancel"/>
+        <ToolbarItem Text="Finalizar" Clicked="OnToolbarFinish"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <!--Suggest de Cliente-->
+            <dm:AutoSuggestBox x:Name="EntityBox" 
+                               PlaceholderText=" Ingresar Cliente ..." 
+                               PlaceholderTextColor="{StaticResource TextPrimary}"
+                               DisplayMemberPath="EntityDescription" 
+                               TextMemberPath="EntityDescription"
+                               TextChanged="EntityBox_TextChanged"
+                               QuerySubmitted="EntityBox_QuerySubmitted"
+                               SuggestionChosen="EntityBox_SuggestionChosen"
+                               HorizontalOptions="StartAndExpand"
+                               WidthRequest="500"
+                               HeightRequest="60"
+                               BackgroundColor="{StaticResource Soft}"
+                               TextColor="{StaticResource TextPrimary}"
+                               Text="{Binding Entity, Mode=OneWayToSource}"/>
+
+            <CollectionView x:Name="ItemCollectionView" 
+                            ItemsSource="{Binding DocumentLines}"
+                            BackgroundColor="{StaticResource Back}">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Grid Padding="1">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="55" />
+                            </Grid.RowDefinitions>
+
+                            <Frame VerticalOptions="Start" Padding="0">
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                </Frame.GestureRecognizers>
+
+                                <Grid>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="55"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1"/>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="40"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--<Image Grid.RowSpan="2"
+                                               Source="{Binding CategoryImageName}"
+                                               Aspect="AspectFill"
+                                               HeightRequest="40"
+                                               WidthRequest="40" /> -->
+                                    <Label  Grid.Column="0" 
+                                            Text="{Binding DocumentLineItemId}"
+                                            IsVisible="false" />
+                                    <Label  Grid.Column="2" 
+                                            Text="{Binding DocumentLineQty}"
+                                            HorizontalOptions="StartAndExpand"
+                                            FontSize="18"
+                                            TextColor="Black"
+                                            LineBreakMode="WordWrap" />
+                                    <Label  Grid.Column="3" 
+                                            Text="{Binding DocumentLineItemDescription}"
+                                            HorizontalOptions="StartAndExpand"
+                                            FontSize="18"
+                                            TextColor="Black"
+                                            LineBreakMode="WordWrap" />
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

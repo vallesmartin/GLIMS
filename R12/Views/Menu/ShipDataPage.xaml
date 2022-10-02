@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="R12.Views.Menu.ShipDataPage"
+             Title="Entrega">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <!--Documento-->
+            <Frame HeightRequest="80">
+
+                <StackLayout Orientation="Vertical">
+                    <Label IsVisible="false"  Text="nada"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Grid.Column="0" Grid.Row="0" Source="doc.png" HeightRequest="25"/>
+                        <Label IsVisible="false" Text="nada"/>
+                        <Label  Grid.Row="0" 
+                                                        Grid.Column="1"
+                                                        Text="{Binding Delivery.EntityModel.EntityDescription}"
+                                                        HorizontalOptions="StartAndExpand"
+                                                        FontSize="20"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        LineBreakMode="WordWrap" />
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Horizontal">
+                            <Label FontSize="16"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        Text="Fecha: "
+                                                        FontAttributes="Bold"/>
+                            <Label FontSize="16"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        Text="{Binding Delivery.DocumentDate, StringFormat='{0:dd/MM}'}"/>
+                            <Label FontSize="16"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        Text="Hora: "
+                                                        FontAttributes="Bold"/>
+                            <Label FontSize="16"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        Text="{Binding Delivery.DocumentDate, StringFormat='{0:hh:mm}'}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label FontSize="16"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        Text="Importe total: "
+                                                        FontAttributes="Bold"/>
+                            <Label FontSize="16"
+                                                        Text="{Binding Delivery.DocumentTotalAmount}"
+                                                        TextColor="{Binding _color}"/>
+                            <Label FontSize="16" IsVisible="{Binding Delivery._numberVisible}"
+                                                        Text="{Binding DocumentNumber,StringFormat='{}#{0} en Andromeda'}"
+                                                        TextColor="{StaticResource Success}"
+                                                        FontAttributes="Bold"/>
+
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            <ScrollView Grid.Row="1">
+                <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
+                    <Label Text="Datos de entrega" HorizontalOptions="Center" FontSize="Title" TextColor="{StaticResource TextPrimary}"/>
+                    <Entry Text="{Binding Amount}"  Placeholder="Importe $$" TextColor="Black" PlaceholderColor="DimGray" Keyboard="Numeric"/>
+
+                    <Button Margin="0,10,0,0" Text="FIRMA CLIENTE"
+                        Command="{Binding SignCommand}"
+                        BackgroundColor="{StaticResource BtnPrimaryColor}"  
+                        TextColor="{StaticResource BtnPrimaryFontColor}" />
+                    <Button Margin="0,10,0,0" Text="FINALIZAR ENTREGA"
+                        Command="{Binding FinalizeCommand}"
+                        BackgroundColor="{StaticResource BtnPrimaryColor}"  
+                        TextColor="{StaticResource BtnPrimaryFontColor}" />
+
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             xmlns:vm="clr-namespace:R12.ViewModels"
+             x:Class="R12.Views.ScannerTestPage"
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:ScannerTestViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <zxing:ZXingScannerView x:Name="_scanView" 
+                                    IsScanning="true" 
+                                    WidthRequest="200" 
+                                    HeightRequest="200" 
+                                    OnScanResult="_scanView_OnScanResult"
+                                    />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

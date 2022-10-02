@@ -1,0 +1,22 @@
+table {
+    width: 100%;
+  }
+
+  .icon-row {
+    width: 20px;
+  }
+
+  .accent {
+    color: #FFD740;
+  }
+
+  .progress-hidden {
+    display:none;
+  }
+
+  .example-card {
+    display: block;
+  }
+  mat-card {
+    margin: 10px;
+  }

@@ -1,0 +1,20 @@
+table {
+  width: 100%;
+}
+
+.icon-row {
+  width: 20px;
+}
+
+.accent {
+  color: #FFD740;
+}
+
+.progress-hidden {
+  display:none;
+}
+
+.button-grid-add {
+  position: relative;
+  float: right;
+}

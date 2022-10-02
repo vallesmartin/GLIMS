@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="R12.Views.Menu.PendingDeliveryPage"
+             Shell.NavBarIsVisible="True"
+             Title="Pedido">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Eliminar pedido" Clicked="OnToolbarCancel"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <!--Documento-->
+            <Frame HeightRequest="80">
+
+                <StackLayout Orientation="Vertical">
+                    <Label IsVisible="false"  Text="nada"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Grid.Column="0" Grid.Row="0" Source="doc.png" HeightRequest="25"/>
+                        <Label IsVisible="false" Text="nada"/>
+                        <Label  Grid.Row="0" 
+                                                        Grid.Column="1"
+                                                        Text="{Binding Delivery._EntityDescription}"
+                                                        HorizontalOptions="StartAndExpand"
+                                                        FontSize="20"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        LineBreakMode="WordWrap" />
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Horizontal">
+                            <Label FontSize="16"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        Text="Fecha: "
+                                                        FontAttributes="Bold"/>
+                            <Label FontSize="16"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        Text="{Binding Delivery._DocumentDate, StringFormat='{0:dd/MM}'}"/>
+                            <Label FontSize="16"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        Text="Hora: "
+                                                        FontAttributes="Bold"/>
+                            <Label FontSize="16"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        Text="{Binding Delivery._DocumentDate, StringFormat='{0:hh:mm}'}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label FontSize="16"
+                                                        TextColor="{StaticResource TextPrimary}"
+                                                        Text="Estado: "
+                                                        FontAttributes="Bold"/>
+                            <Label FontSize="16"
+                                                        Text="{Binding Delivery._DocumentStatusText}"
+                                                        TextColor="Black"/>
+                            <Label FontSize="16" IsVisible="{Binding Delivery._numberVisible}"
+                                                        Text="{Binding _DocumentNumber,StringFormat='{}#{0} en Andromeda'}"
+                                                        TextColor="{StaticResource Success}"
+                                                        FontAttributes="Bold"/>
+                            
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            <Label Text="Detalle de articulos"
+                   FontSize="18"
+                   TextColor="Black"
+                   Padding="5"/>
+            <CollectionView x:Name="ItemCollectionView" 
+                            ItemsSource="{Binding Detail}"
+                            BackgroundColor="{StaticResource Back}">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Grid Padding="1">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="55" />
+                            </Grid.RowDefinitions>
+
+                            <Frame VerticalOptions="Start" Padding="0">
+
+                                <Grid>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="55"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1"/>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="40"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!--<Image Grid.RowSpan="2"
+                                               Source="{Binding CategoryImageName}"
+                                               Aspect="AspectFill"
+                                               HeightRequest="40"
+                                               WidthRequest="40" /> -->
+                                    <Label  Grid.Column="0" 
+                                            Text="{Binding _DocumentLineId}"
+                                            IsVisible="false" />
+                                    <Label  Grid.Column="2" 
+                                            Text="{Binding _DocumentLineQty}"
+                                            HorizontalOptions="StartAndExpand"
+                                            FontSize="18"
+                                            TextColor="Black"
+                                            LineBreakMode="WordWrap" />
+                                    <Label  Grid.Column="3" 
+                                            Text="{Binding _DocumentLineItemDescription}"
+                                            HorizontalOptions="StartAndExpand"
+                                            FontSize="18"
+                                            TextColor="Black"
+                                            LineBreakMode="WordWrap" />
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

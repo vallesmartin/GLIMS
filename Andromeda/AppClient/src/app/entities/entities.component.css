@@ -1,0 +1,24 @@
+.mat-tab-group {
+    margin-bottom: 48px;
+}
+
+table {
+    width: 100%;
+  }
+
+  .icon-row {
+    width: 20px;
+  }
+
+  .accent {
+    color: #FFD740;
+  }
+
+  .progress{
+
+  }
+
+  .progress-hidden {
+    display:none;
+  }
+  

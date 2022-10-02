@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="R12.Views.LoginPage"
+             xmlns:vm="clr-namespace:R12.ViewModels"
+             Shell.NavBarIsVisible="False"
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackLayout BackgroundColor="{StaticResource Secondary}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <ContentView Padding="0,0,0,0" VerticalOptions="FillAndExpand">
+                    <Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="200" />
+                </ContentView>
+            </StackLayout>
+        </StackLayout>
+        <ScrollView Grid.Row="1">
+            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
+                <Label Text="Iniciar sesión" HorizontalOptions="Center" FontSize="Title" TextColor="{StaticResource TextPrimary}"/>
+                <Entry Text="{Binding User}"  Placeholder="Ingrese usuario..." TextColor="Black" PlaceholderColor="DimGray"/>
+                <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Contraseña..." TextColor="Black" PlaceholderColor="DimGray"/>
+
+                <Button Margin="0,10,0,0" Text="INGRESAR"
+                        Command="{Binding LoginCommand}"
+                        BackgroundColor="{StaticResource BtnPrimaryColor}"  
+                        TextColor="{StaticResource BtnPrimaryFontColor}" />
+
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>

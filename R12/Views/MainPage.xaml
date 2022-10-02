@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="R12.Views.MainPage"
+             xmlns:vm="clr-namespace:R12.ViewModels"
+             Shell.NavBarIsVisible="True"
+             Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <!--<ToolbarItem Icon="{Binding SendLogo}" Text="Search" Command="{Binding SendDeliveryCommand}" />-->
+        <ToolbarItem Icon="{Binding RecycleLogo}" Text="Search" Command="{Binding RecycleCommand}" />
+        <!--<ToolbarItem Icon="{Binding NotificationLogo}" Text="Search" Command="{Binding NotificationsCommand}"/>-->
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+
+        
+        <RefreshView Command="{Binding RefreshCommand}" IsEnabled="True" IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}">
+            <StackLayout VerticalOptions="FillAndExpand">
+                <!--Logo-->
+                <StackLayout VerticalOptions="Start" HorizontalOptions="Fill">
+                    <Frame HasShadow="True" HorizontalOptions="FillAndExpand" BackgroundColor="{StaticResource Secondary}" WidthRequest="100" HeightRequest="100">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                            <Image Source="xamarin_logo.png" VerticalOptions="Center" HeightRequest="100"/>
+                            <Label Text="v2.5" TextColor="{StaticResource TextSecondary}" Margin="0,65,0,0" />
+                        </StackLayout>
+                    </Frame>
+                    
+                </StackLayout>
+
+                <StackLayout VerticalOptions="FillAndExpand">
+                    <Grid VerticalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <ScrollView Grid.Row="0">
+                            <StackLayout>
+
+                                <!--Conectividad-->
+                                <Frame x:Name="FrameConnection" HasShadow="True" HorizontalOptions="FillAndExpand" IsVisible="false">
+
+                                    <StackLayout>
+                                        <!--Conectado (SIN USAR IS VISIBLE FALSE)-->
+                                        <StackLayout IsVisible="False" Orientation="Horizontal">
+                                            <Image Source="nubeconexion.png" WidthRequest="70"/>
+                                            <Label  HorizontalOptions="Center"
+                                                Grid.Column="0"
+                                                Text="Sin conexión a Internet"
+                                                FontAttributes="None"
+                                                FontSize="20"
+                                                TextColor="{Binding None}"/>
+                                            <Button Text="Comprobar conexión" Style="{StaticResource ButtonWarnSmall}"/>
+                                        </StackLayout>
+                                        <!--No Conectado-->
+                                        <StackLayout x:Name="StackLayoutNotConnection" Orientation="Vertical">
+                                            <Image Source="nubeconexion.png" WidthRequest="70"/>
+                                            <Label  HorizontalOptions="Center"
+                                                Grid.Column="0"
+                                                Text="Sin conexión a Internet"
+                                                FontAttributes="None"
+                                                FontSize="20"
+                                                TextColor="{StaticResource TextPrimary}"/>
+                                            <Button Text="Comprobar conexión" Style="{StaticResource ButtonWarnSmall}" Command="{Binding RefreshPageCommand}"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+
+                                <!--Conectividad-->
+                                <Frame x:Name="FrameConnected" HasShadow="True" HorizontalOptions="FillAndExpand" IsVisible="false">
+
+                                    <StackLayout>
+                                        <!--Conectado (SIN USAR IS VISIBLE FALSE)-->
+                                        <StackLayout IsVisible="False" Orientation="Horizontal">
+                                            <Image Source="nubeconexion.png" WidthRequest="70"/>
+                                            <Label  HorizontalOptions="Center"
+                                                Grid.Column="0"
+                                                Text="Sin conexión a Internet"
+                                                FontAttributes="None"
+                                                FontSize="20"
+                                                TextColor="{Binding None}"/>
+                                            <Button Text="Comprobar conexión" Style="{StaticResource ButtonWarnSmall}"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+
+                                <!--Mis pedidos-->
+                                <Frame HasShadow="True" HorizontalOptions="FillAndExpand" Margin="10,0,10,0">
+
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                    </Frame.GestureRecognizers>
+
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="120" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="0"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        
+                                        <Label  HorizontalOptions="StartAndExpand"
+                                                Padding="0,0,0,0"
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Text="Mis pedidos"
+                                                FontAttributes="None"
+                                                FontSize="18"
+                                                TextColor="Black"/>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition Width="50"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackLayout Grid.Row="1" Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                                                <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="Start">
+                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                            Padding="0,0,0,0"
+                                                            Grid.Row="1"
+                                                            Grid.Column="0"
+                                                            Text="Esperando envío: "
+                                                            FontAttributes="None"
+                                                            FontSize="16"
+                                                            TextColor="Black"/>
+                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                            Padding="0,0,0,0"
+                                                            Grid.Row="1"
+                                                            Grid.Column="0"
+                                                            Text="{Binding CountPendingDeliveries}"
+                                                            FontAttributes="None"
+                                                            FontSize="16"
+                                                            TextColor="{Binding CountPendingColor}"/>
+                                                </StackLayout>
+                                                <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="Start">
+                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                            Padding="0,0,0,0"
+                                                            Grid.Row="2"
+                                                            Grid.Column="0"
+                                                            Text="Enviados (hoy):"
+                                                            FontAttributes="None"
+                                                            FontSize="16"
+                                                            TextColor="Black"/>
+                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                            Padding="0,0,0,0"
+                                                            Grid.Row="1"
+                                                            Grid.Column="0"
+                                                            Text="{Binding CountToday}"
+                                                            FontAttributes="None"
+                                                            FontSize="16"
+                                                            TextColor="Black"/>
+                                                </StackLayout>
+                                                <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="Start">
+                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                            Padding="0,0,0,0"
+                                                            Grid.Row="3"
+                                                            Grid.Column="0"
+                                                            Text="Total pedidos en dispositivo:"
+                                                            FontAttributes="None"
+                                                            FontSize="16"
+                                                            TextColor="Black"/>
+                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                            Padding="0,0,0,0"
+                                                            Grid.Row="1"
+                                                            Grid.Column="0"
+                                                            Text="{Binding CountDeliveries}"
+                                                            FontAttributes="None"
+                                                            FontSize="16"
+                                                            TextColor="Black"/>
+                                                </StackLayout>
+                                            </StackLayout>
+                                            
+                                        </Grid>
+
+                                        <StackLayout Orientation="Vertical">
+                                            <Image Source="doc.png" HeightRequest="60" HorizontalOptions="End" VerticalOptions="Start"/>
+                                            <Label Text="Ir a Mis Pedidos" HorizontalOptions="End" VerticalOptions="Start"
+                                                   FontSize="16"
+                                                   TextDecorations="Underline"
+                                                   TextColor="{StaticResource TextPrimary}"/>
+                                        </StackLayout>
+                                        
+                                        <!--<Label  HorizontalOptions="StartAndExpand"
+                                                Padding="10,0,0,0"
+                                                Grid.Column="1"
+                                                Text="{Binding CountDeliveries}"
+                                                FontSize="Large"
+                                                FontAttributes="Bold"
+                                                TextColor="Black"
+                                                BackgroundColor="red"/>-->
+                                    </Grid>
+                                </Frame>
+
+                                <!--Mis entregas-->
+
+                                <Frame HasShadow="True" HorizontalOptions="FillAndExpand" Margin="10,0,10,0">
+
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped1" />
+                                    </Frame.GestureRecognizers>
+
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="90" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="0"/>
+                                        </Grid.ColumnDefinitions>
+
+
+                                        <Label  HorizontalOptions="StartAndExpand"
+                                                Padding="0,0,0,0"
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Text="Mis entregas"
+                                                FontAttributes="None"
+                                                FontSize="18"
+                                                TextColor="Black"/>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition Width="50"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackLayout Grid.Row="1" Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                                                <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="Start">
+                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                            Padding="0,0,0,0"
+                                                            Grid.Row="1"
+                                                            Grid.Column="0"
+                                                            Text="Entregas pendientes: "
+                                                            FontAttributes="None"
+                                                            FontSize="16"
+                                                            TextColor="Black"/>
+                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                            Padding="0,0,0,0"
+                                                            Grid.Row="1"
+                                                            Grid.Column="0"
+                                                            Text="{Binding CountShip}"
+                                                            FontAttributes="None"
+                                                            FontSize="16"
+                                                            TextColor="{Binding CountShipColor}"/>
+                                                </StackLayout>
+
+                                            </StackLayout>
+
+                                        </Grid>
+
+                                        <StackLayout Orientation="Vertical">
+                                            <Image Source="enviapedidoicon.png" HeightRequest="60" HorizontalOptions="End" VerticalOptions="Start"/>
+                                            <Label Text="Ir a Entregas" HorizontalOptions="End" VerticalOptions="Start"
+                                                   FontSize="16"
+                                                   TextDecorations="Underline"
+                                                   TextColor="{StaticResource TextPrimary}"/>
+                                        </StackLayout>
+
+                                        <!--<Label  HorizontalOptions="StartAndExpand"
+                                                Padding="10,0,0,0"
+                                                Grid.Column="1"
+                                                Text="{Binding CountDeliveries}"
+                                                FontSize="Large"
+                                                FontAttributes="Bold"
+                                                TextColor="Black"
+                                                BackgroundColor="red"/>-->
+                                    </Grid>
+                                </Frame>
+                                <!--Mis cobranzas-->
+                                <Frame HasShadow="True" HorizontalOptions="FillAndExpand" Margin="10,0,10,0">
+
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped2" />
+                                    </Frame.GestureRecognizers>
+
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="70" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="0"/>
+                                        </Grid.ColumnDefinitions>
+
+
+                                        <Label  HorizontalOptions="StartAndExpand"
+                                                Padding="0,0,0,0"
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Text="Cobranzas"
+                                                FontAttributes="None"
+                                                FontSize="18"
+                                                TextColor="Black"/>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition Width="50"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackLayout Grid.Row="1" Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                                                <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="Start">
+                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                            Padding="0,0,0,0"
+                                                            Grid.Row="1"
+                                                            Grid.Column="0"
+                                                            Text="Cobros pendientes: "
+                                                            FontAttributes="None"
+                                                            FontSize="16"
+                                                            TextColor="Black"/>
+                                                    <Label  HorizontalOptions="StartAndExpand"
+                                                            Padding="0,0,0,0"
+                                                            Grid.Row="1"
+                                                            Grid.Column="0"
+                                                            Text="{Binding CountDebts}"
+                                                            FontAttributes="None"
+                                                            FontSize="16"
+                                                            TextColor="{Binding CountDebtColor}"/>
+                                                </StackLayout>
+
+                                            </StackLayout>
+
+                                        </Grid>
+
+                                        <StackLayout Orientation="Vertical">
+                                            <Label Text="Ir a cobros" HorizontalOptions="End" VerticalOptions="Start"
+                                                   FontSize="16"
+                                                   TextDecorations="Underline"
+                                                   TextColor="{StaticResource TextPrimary}"/>
+                                        </StackLayout>
+
+                                        <!--<Label  HorizontalOptions="StartAndExpand"
+                                                Padding="10,0,0,0"
+                                                Grid.Column="1"
+                                                Text="{Binding CountDeliveries}"
+                                                FontSize="Large"
+                                                FontAttributes="Bold"
+                                                TextColor="Black"
+                                                BackgroundColor="red"/>-->
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+                        </ScrollView>
+                        <!--Boton flotante-->
+                        <ImageButton x:Name="btnFocus" Source="icon_round.png"  Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="End" WidthRequest="70" HeightRequest="70" Margin="0,0,20,22" VerticalOptions="End" Command="{Binding GoToSellCommand}" />
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

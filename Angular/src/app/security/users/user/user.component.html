@@ -1,0 +1,22 @@
+<mat-progress-bar [class]="cssProgress" color="primary" mode="indeterminate"></mat-progress-bar>
+<mat-card class="example-card">
+    <mat-card-content>
+        <h2 class="example-h2">{{user.Username}}</h2>
+    </mat-card-content>
+</mat-card>
+
+<mat-card>
+    <mat-card-title>{{title}}</mat-card-title>
+    <mat-card-content>
+        <mat-form-field appearance="legacy">
+            <div class="example-container">
+                <mat-form-field appearance="fill">
+                  <mat-label>Ingrese nombre de usuario</mat-label>
+                </mat-form-field>
+              </div>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Ingrese confirmacion de contraseña</mat-label>
+        </mat-form-field>
+    </mat-card-content>
+</mat-card>
